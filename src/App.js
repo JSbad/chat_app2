@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Chat from './chat.js';
-import Landing from './landing.js';
+import Login from './login.js';
 import './App.css';
 
 
@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route  path='' element={<Landing/>} >
+        <Route  path='' element={<Login/>} >
         <Route  path='/userId' element={<Chat/>} />
         </Route>
       </Routes>

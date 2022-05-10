@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import crypto from 'crypto-js';
 import axios from 'axios';
 
-const Landing = () => {
+const Login = () => {
   const [userName,setUsername] = React.useState('');
   const [password,setPassword] = React.useState('');
   const [user, setUser] = React.useState();
@@ -13,7 +13,6 @@ const Landing = () => {
   const encrypt = (string) => {return crypto.AES.encrypt(string, secret).toString();
   };
   // const decrypt = (encryption) => {
-  
   //   let bytes = crypto.AES.decrypt(encryption, secret);
   //   let originalText = bytes.toString(crypto.enc.Utf8);
   //   return originalText;
@@ -67,4 +66,4 @@ const Landing = () => {
     );
 };
 
-export default Landing;
+export default Login;
