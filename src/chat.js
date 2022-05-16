@@ -16,7 +16,7 @@ const Chat = (props) => {
   };
 
   return (
-    <div className="chat-room-container">
+    <div className="chat-container">
       <h1 className="chat-name">{contact}</h1>
       <div className="messages-container">
         <ol className="messages-list">

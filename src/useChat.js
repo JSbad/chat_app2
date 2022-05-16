@@ -6,7 +6,7 @@ const newMsg = "newChatMessage";
 const useChat = (contact) => {
     const [messages, setMessages] = useState([]);
     const socketRef = useRef();
-useEffect(() =>{
+useEffect(() => {
     const ws = new WebSocket('ws://localhost:8080');
     socketRef.current = ws;
 

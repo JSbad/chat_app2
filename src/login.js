@@ -5,12 +5,13 @@ import crypto from 'crypto-js';
 import axios from 'axios';
 
 const Login = () => {
-  const [userName,setUsername] = React.useState('');
+  const [username,setUsername] = React.useState('');
   const [password,setPassword] = React.useState('');
   const [user, setUser] = React.useState();
-  const secret = 'test';
+  const secret = 'testtesttesttest';
 
-  const encrypt = (string) => {return crypto.AES.encrypt(string, secret).toString();
+  const encrypt = (string) => { 
+    return crypto.AES.encrypt(string, secret).toString();
   };
   // const decrypt = (encryption) => {
   //   let bytes = crypto.AES.decrypt(encryption, secret);
@@ -25,16 +26,16 @@ const Login = () => {
     }
   }, []);
 
-  const prepare = (userName, password) => {
-  let  submitUsername = (JSON.stringify(userName));
-  let  submitPassword = (encrypt(password));
+  const prepare = (uName, pass) => {
+  let  submitUsername = (JSON.stringify(uName));
+  let  submitPassword = (encrypt(pass));
     return {submitUsername, submitPassword};
     };
   const onSubmit = async e => {
     e.preventDefault();
-    const user = prepare();
+    const user = prepare(username, password);
     try {
-      let response = await axios.post('http://localhost:3000/', user);
+      let response = await axios.post('http://localhost:3000/login', user);
       setUser(response.data);
       localStorage.setItem('user', response.data);
     } catch(err) {
@@ -47,7 +48,7 @@ const Login = () => {
             <form
                 onSubmit={onSubmit}>
                 <input
-                    value={userName}
+                    value={username}
                     onChange={e => setUsername(e.currentTarget.value)}
                     type='text'
                     placeholder='Username'
