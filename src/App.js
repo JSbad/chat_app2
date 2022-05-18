@@ -10,8 +10,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route  path='' element={<Login/>} >
-        <Route  path='/userId' element={<Chat/>} />
+        <Route  path='/' element={<Login/>} >
+        <Route  path='/:userId' element={<Chat/>} />
         </Route>
       </Routes>
     </Router>

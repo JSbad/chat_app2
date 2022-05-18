@@ -3,8 +3,13 @@ import React from 'react';
 import { useEffect, useRef, useState } from "react";
 import crypto from 'crypto-js';
 import axios from 'axios';
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Login = () => {
+  const navigate = useNavigate();
   const [username,setUsername] = React.useState('');
   const [password,setPassword] = React.useState('');
   const [user, setUser] = React.useState();
@@ -21,7 +26,7 @@ const Login = () => {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
+      const foundUser = loggedInUser;
       setUser(foundUser);
     }
   }, []);
@@ -30,14 +35,16 @@ const Login = () => {
     e.preventDefault();
     const user = {username, password};
     try {
-      let response = await axios.post('http://localhost:3000/login', user);
-      setUser(response.data);
+      let response = await axios.post('http://localhost:3000/login', qs.stringify(user));
+      if(response.status === 200) {
+      setUser(username);
       console.log(user);
-      localStorage.setItem('user', response.data);
+      localStorage.setItem('user', response.data.payload);
+      console.log(response.data.payload);
+      return navigate(`/${response.data.payload}`);
+      }
     } catch(err) {
       console.log(err);
-      console.log(err.request);
-      console.log(user);
     }
   }
 

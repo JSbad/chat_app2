@@ -2,8 +2,8 @@ import React from "react";
 import useChat from "./useChat.js";
 
 const Chat = (props) => {
-  const { contact } = props.match.params; // Gets contact from URL
-  const { messages, sendMessage } = useChat(contact); // Creates a websocket and manages messaging
+  const { userId } = props.match.params; // Gets userId from URL
+  const { messages, sendMessage } = useChat(userId); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = React.useState(""); // Message to be sent
 
   const handleNewMessageChange = (event) => {
@@ -17,7 +17,7 @@ const Chat = (props) => {
 
   return (
     <div className="chat-container">
-      <h1 className="chat-name">{contact}</h1>
+      <h1 className="chat-name">{userId}</h1>
       <div className="messages-container">
         <ol className="messages-list">
           {messages.map((message, i) => (

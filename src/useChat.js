@@ -3,7 +3,7 @@ import WebSocket from 'ws';
 
 const newMsg = "newChatMessage";
 
-const useChat = (contact) => {
+const useChat = (userId) => {
     const [messages, setMessages] = useState([]);
     const socketRef = useRef();
 useEffect(() => {
@@ -21,7 +21,7 @@ useEffect(() => {
     return () => {
         socketRef.current.close();
     };
-}, [contact]);
+}, [userId]);
 
 const sendMessage = (messageBody) => {
     socketRef.current.send(newMsg, {
