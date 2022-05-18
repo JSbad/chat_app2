@@ -26,20 +26,18 @@ const Login = () => {
     }
   }, []);
 
-  const prepare = (uName, pass) => {
-  let  submitUsername = (JSON.stringify(uName));
-  let  submitPassword = (encrypt(pass));
-    return {submitUsername, submitPassword};
-    };
   const onSubmit = async e => {
     e.preventDefault();
-    const user = prepare(username, password);
+    const user = {username, password};
     try {
       let response = await axios.post('http://localhost:3000/login', user);
       setUser(response.data);
+      console.log(user);
       localStorage.setItem('user', response.data);
     } catch(err) {
       console.log(err);
+      console.log(err.request);
+      console.log(user);
     }
   }
 
