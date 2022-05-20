@@ -8,4 +8,4 @@ const Contact = ({contact, selectContact}) => {
   )
 }
 
-export default contact;
+export default Contact;

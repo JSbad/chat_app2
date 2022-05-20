@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.chat-container{
+  position: absolute;
+  display: grid;
+  overflow: hidden;
+  height: calc(100vh - 70px);
+  width: 100vw;
+}
+
+.messages-container {
+  margin-top : 20px;
+  position: relative;
+  display: grid;
+  overflow: hidden;
+
+}
+.messages-list {
+  margin-bottom: 10px;
+  padding: 10px;
+  height: 300px;
+}
+.message-item {
+  display: flex;
+  justify-content: center;
+}
