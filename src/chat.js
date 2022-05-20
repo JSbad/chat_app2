@@ -1,11 +1,35 @@
 import React from "react";
 import useChat from "./useChat.js";
+import Contact from "./contact.js";
 
 const Chat = (props) => {
   const { userId } = props.match.params; // Gets userId from URL
   const { messages, sendMessage } = useChat(userId); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = React.useState(""); // Message to be sent
+  const [contacts, setContacts] = React.useState([]);
+  const [chat, setChat] = React.useState('');
 
+useEffect(() => {
+  const fetchContacts = async e => {
+    e.preventDefault();
+    let contacts = [];
+    try {
+      let response = await axios.get(`http://localhost:3000/users/${userId}/contacts`);
+      if(response.status === 200) {
+        //for each contact send a call to get username
+        //push into contacts array
+        return response.payload;
+        let contacts = [];
+      }
+    } catch(err) {
+      console.log(err);
+    }
+  }
+})
+  const selectContact = (contact) => {
+    setChat(contact);
+    console.log(contact);
+  }
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
   };

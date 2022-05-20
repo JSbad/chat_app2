@@ -12,7 +12,7 @@ useEffect(() => {
 
     socketRef.current.on(newMsg, (message) =>{
         const incomingMessage  = {
-            ...message,
+            message,
             ownedByCurrentUser: message.senderId === socketRef.current.id
         };
         setMessages((messages) => [...messages, incomingMessage]);
